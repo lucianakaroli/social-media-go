@@ -1,13 +1,19 @@
 package main
 
 import (
-	"api/src/router"
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/lucianakaroli/social-media-go/src/config"
+	"github.com/lucianakaroli/social-media-go/src/router"
 )
 
+
 func main() {
+	config.Carregar()
+
+	fmt.Println(config.Porta)
 	fmt.Println("Rodando API")
 	r := router.Gerar()
 
