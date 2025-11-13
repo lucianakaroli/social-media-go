@@ -16,7 +16,8 @@ type Usuario struct {
     CriadoEm time.Time `json:"criadoEm,omitempty"`
 }
 
-func (usuario *Usuario) preparar() error {
+// Preparar vai chamar os metodos para validar e formatar o usuario recebido
+func (usuario *Usuario) Preparar() error {
     if erro := usuario.validar(); erro != nil {
         return erro
     }
