@@ -14,5 +14,5 @@ func main() {
 
 	fmt.Println("Escultando na porta", config.Porta)
 
-	log.Fatal(http.ListenAndServe(":3001", r))
+	log.Fatal(http.ListenAndServe(":3000", r))
 }

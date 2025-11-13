@@ -5,22 +5,18 @@ import (
 	"social-media-go/src/modelos"
 )
 
-// Usuarios representa um repositorio de usuarios
-type usuarios struct {
+// usuarios representa um repositório de usuários
+type Usuarios struct {
 	db *sql.DB
 }
 
-func (u *usuarios) Criar(usuario modelos.Usuario) {
-	panic("unimplemented")
+// NovoRepositorioDeUsuarios cria um repositório de usuários
+func NovoRepositorioDeUsuarios(db *sql.DB) *Usuarios {
+	return &Usuarios{db}
 }
 
-// NovoRepositorioDeUsuarios cria um repositorio de usuarios
-func NovoRepositorioDeUsuarios(db *sql.DB) *usuarios {
-	return &usuarios{db}
-}
-
-// Criar insere um usuario no banco de dados
-func (u Usuarios) Criar(usuario modelos.Usuario) (uint64, error) {
+// Criar insere um usuário no banco de dados
+func (repositorio Usuarios) Criar(usuario modelos.Usuario) (uint64, error) {
 	statement, erro := repositorio.db.Prepare(
 		"insert into usuarios (nome, nick, email, senha) values(?, ?, ?, ?)",
 	)
@@ -34,10 +30,10 @@ func (u Usuarios) Criar(usuario modelos.Usuario) (uint64, error) {
 		return 0, erro
 	}
 
-	ultimoIDInserido, erro := resultado.LastInsertID()
+	ultimoIDInserido, erro := resultado.LastInsertId()
 	if erro != nil {
 		return 0, erro
 	}
 
-	return uint64(ultimoIDInserido)
+	return uint64(ultimoIDInserido), nil
 }
