@@ -1,7 +1,7 @@
 package rotas
 
 import (
-	"api/src/controllers"
+	"social-media-go/src/controllers"
 	"net/http"
 )
 
